@@ -1,0 +1,58 @@
+﻿<!--@@1 Inicio: Importamos el name para la comnicación http y capturamos el valor de sesión-->
+@using Microsoft.AspNetCore.Http
+@{
+    var vUser = Context.Session.GetString("_User");<!--Capturar la sesión en la variable vUser-->
+}
+<!--@@1 Final-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title><!--Capturamos el titulo definido en el vista que corresponda (en este caso sera de la vista Index - LISTAR USUARIO)-->
+    <!--@@2 Inicio: Importamos la librería js jQuery y el css bootstrap-->
+    <link href="/lib/bootstrap-4.3.1/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <!--@@2 Final-->
+</head>
+<body>
+    <div class="container">
+
+        <div class="row justify-content-lg-center">
+            <div class="row">
+                <div class="col-12 badge-info">
+                    <h3>LOGIN MVC ASP.Net Core 3.1</h3><!--Cabera de la página-->
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-lg-end">
+            <div class="row">
+                <!--@@3 Inicio: Pasar el valor de la variable vUser (sessión) a al parráfo; además invocamos al Action LogOff para cerrar la sesión-->
+                <div class="col">
+                    <p>USUARIO: @vUser</p><!--valor de la sesión-->
+                </div>
+                <div class="col">
+
+                    @using (Html.BeginForm("LogOff", "Login", FormMethod.Post, new { id = "logoutForm", @class = "form-css" }))
+                    {
+                        <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a>
+                    }
+                </div>
+                <!--@@3 Final-->
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer class="row justify-content-center">
+            <p>
+                © 2017 - @DateTime.Now.Year
+                <a href="http://www.hadsonpar.com/" target="_blank">HadsonPar</a> |
+                My LOGIN Application MVC ASP.Net Core 3.1
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

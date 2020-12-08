@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DEMO03_LOGIN.Models.ClsUsuario>
+
+@{
+    var title = "LISTAR USUARIO";
+    ViewData["Title"] = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <h4>@title</h4>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Usuario
+            </th>
+            <th>
+                Contraseña
+            </th>
+            <th>
+                Intentos Válidos
+            </th>
+            <th>
+                Nivel Seguridad
+            </th>
+            <th>
+                Fecha Registro
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contrasena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.intentos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nivelSeg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaReg)
+            </td>
+        </tr>}
+    </tbody>
+</table>
